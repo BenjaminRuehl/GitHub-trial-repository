@@ -7,7 +7,7 @@ cap cd "C:\Users\BenjaminRühl\C4ED\C4ED - All - General\13_Knowledge Management
 ***  COVID 19 data   ***
 ************************
 insheet using "https://covid.ourworldindata.org/data/owid-covid-data.csv", clear
-
+**
 gen date2 = date(date, "YMD")
 format date2 %tdDD-Mon-yy
 drop date
