@@ -2,6 +2,8 @@
 ***  Example data    ***
 ************************
 cap cd "C:\Users\BenjaminRühl\C4ED\C4ED - All - General\13_Knowledge Management\02_KM_All\02_Working_Groups\02_GitHub\04_Trial Repository\GitHub-trial-repository"
+mkdir ".\data"
+mkdir ".\figures"
 
 ************************
 ***  COVID 19 data   ***
