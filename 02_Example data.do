@@ -44,8 +44,6 @@ gen region = .
 
 replace region = 1 if group29==1 & country=="United States" // North America
 replace region = 2 if group29==1 & country!="United States" // North America
-replace region = 3 if group20==1 & country=="Brazil" // Latin America and Carribean
-replace region = 4 if group20==1 & country!="Brazil" // Latin America and Carribean
 replace region = 5 if group10==1 & country=="Germany" // Germany
 replace region = 6 if group10==1 & country!="Germany" // Rest of EU
 replace region = 7 if  group8==1 & group10!=1 & country=="United Kingdom" // Rest of Europe and Central Asia
@@ -55,8 +53,9 @@ replace region = 10 if group37==1 // Sub-saharan Africa
 replace region = 11 if group35==1 & country=="India" // South Asia
 replace region = 12 if group35==1 & country!="India" // South Asia
 replace region = 13 if  group6==1 // East Asia and Pacific
+replace region = 14 if group20==1 // Latin America (incl. Brazil)
 
-lab de region  1 "United States" 2 "Rest of North America" 3 "Brazil" 4 "Rest of Latin America" 5 "Germany" 6 "Rest of European Union" 7 "United Kingdom" 8 "Rest of Europe" 9 "MENA" 10 "Sub-Saharan Africa" 11 "India" 12 "Rest of South Asia" 13 "East Asia and Pacific"
+lab de region  1 "United States" 2 "Rest of North America" 3 "Brazil" 4 "Rest of Latin America" 5 "Germany" 6 "Rest of European Union" 7 "United Kingdom" 8 "Rest of Europe" 9 "MENA" 10 "Sub-Saharan Africa" 11 "India" 12 "Rest of South Asia" 13 "East Asia and Pacific" 14 "Latin America (incl. Brazil)"
 
 lab val region region
 
@@ -80,6 +79,9 @@ graph export ./figures/region_deaths.png, replace wid(1000)
 
 xtline new_cases_ma7, overlay xtitle("") ytitle("New cases (7 day M-A)") 
 graph export ./figures/region_cases.png, replace wid(1000)
+
+xtline new_cases_ma7 if (region==14 | region==1), overlay xtitle("") ytitle("New cases (7 day M-A)") 
+graph export ./figures/region_cases_LatinAmerica_US.png, replace wid(1000)
 
 twoway (scatter new_deaths_ma7 new_cases_ma7, mc(%10) ms(vsmall)), xtitle("New deaths (7 day M-A)") ytitle("New cases (7 day M-A)") 
 graph export ./figures/scatter_cases_deaths.png, replace wid(1000)
